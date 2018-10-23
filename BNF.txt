@@ -1,0 +1,117 @@
+<Program> ::= <identifier> : <block> ENDP <identifier> "."
+
+
+<block> ::= DECLARATIONS <declaration_block> CODE <statement_list> 
+			| CODE <statement_list>
+
+			
+<variables> ::= <identifier> "," <variables> 
+				|<identifier>
+
+
+<declaration_block> ::= <variables> OF TYPE <type>  ";" <declaration_block>
+					| <variables> OF TYPE <type> ";"
+
+<type> ::= CHARACTER 
+			| INTEGER 
+			| REAL
+
+
+<statement_list> ::= <statement>
+					| <statement> ";" <statement_list>
+
+
+<statement> ::= <assignment_statement>
+				| <if_statement>
+				| <do_statement>
+				| <while_statement>
+				| <for_statement>
+				| <write_statement>
+				| <read_statement>
+				
+
+assignment_statement ::= <expression> "->" <identifier>
+
+
+if_statement ::= IF <condional> THEN <statement_list> ENDIF
+				| IF <condional> THEN <statement_list> ELSE <statement_list> ENDIF
+				
+				
+
+<do_statement> ::= DO <statement_list> WHILE <condional> ENDDO
+
+
+
+while_statement ::= WHILE <conditional> DO <statement_list> ENDWHILE
+
+
+<for_statement> ::= FOR <identifier> IS <expression> BY <expression> TO <expression> 
+										DO <statement_list> ENDFOR
+
+
+<write_statement> ::= WRITE "(" <output_list> ")" 
+					| NEWLINE
+
+
+<read_statement> ::= READ "(" <identifier> ")"
+
+
+<output_list> ::= <value> "," <output_list>
+			| <value>
+				
+				
+<conditional> ::= NOT <conditional>
+				| <expression> <comparator> <expression> AND <conditional>
+				| <expression> <comparator> <expression> OR <conditional>
+				| <expression> <comparator> <expression>
+
+
+<comparator> ::= "="
+				| "<>"
+				| "<"
+				| ">"
+				| "<="
+				| ">="
+							
+
+<expression> ::= <term> "+" <expression>
+				|<term> "-" <expression>
+				|<term>
+
+
+<term> ::= <value> "*" <term>
+			|<value>"/"<term>
+			|<value>
+	
+
+
+<value> ::= <identifier>
+			| <constant>
+			| "("expression")"
+	
+
+<constant>::= <number_constant>
+			|<character_constant>
+				
+				
+<number> ::= digit 
+			| <digit> <number>				
+
+			
+<character_constant> ::= "'" <character> "'" 
+
+
+<number_constant> ::= "-" <number>
+					| <number>
+					| "-" <number> "." <number>
+					| <number> "." <number>
+
+<identifier> ::= <character>
+             | <identifier> <character>
+             | <identifier> <digit>
+				
+<character> ::= a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z
+             |A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z
+
+		
+<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
